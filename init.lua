@@ -87,6 +87,10 @@ minetest.register_globalstep(function(dtime)
             local node = minetest.get_node(pos)
 
             local light_now   = minetest.get_node_light(pos) or 0
+            if node.name == 'ignore' then
+                -- can happen while world loads, set to something innocent
+                light_now = 9
+            end
 
             local dps = C.damage_for_light[light_now]
 
