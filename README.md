@@ -3,7 +3,7 @@ Beware the dark [bewarethedark]
 
 A Minetest mod where darkness simply kills you directly
 
-Version: 0.1.1
+Version: 0.2.0
 
 License:
   Code: LGPL 2.1 (see included LICENSE file)
@@ -26,14 +26,15 @@ Current behavior
 ----------------
 
 If you stand in a node with light level 7 or less, you slowly
-get damaged. The darker it is, the more damage you get per second.
+lose "sanity", represented by a hud bar with eyes. The darker it is,
+the more sanity you lose per second. When you run out of sanity,
+you get damaged instead!
+
+Stand in bright light to replenish sanity. Sunlight is best, but
+directly on top of a torch should work, too.
 
 Future plans
 ------------
-
-**Darkness meter**: similar to the standard air bar and drowning, add
-a meter for light, or sanity, or something loreful. You only start
-taking damage when the meter is depleted.
 
 **Sunburn**: Suddenly, too much light can kill you too! Will need
 a separate meter.
