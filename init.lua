@@ -43,13 +43,13 @@ bewarethedark = {
             [ 9] = 0,
             [ 8] = 0,
             [ 7] = 0.1,
-            [ 6] = 0.25,
-            [ 5] = 0.5,
-            [ 4] = 0.75,
-            [ 3] = 1.0,
-            [ 2] = 1.25,
-            [ 1] = 1.5,
-            [ 0] = 1.75,
+            [ 6] = 0.2,
+            [ 5] = 0.3,
+            [ 4] = 0.4,
+            [ 3] = 0.5,
+            [ 2] = 0.6,
+            [ 1] = 0.8,
+            [ 0] = 1.0,
         },
     },
 
@@ -68,6 +68,16 @@ bewarethedark = {
 local M = bewarethedark
 local C = bewarethedark.config
 
+dofile(minetest.get_modpath('bewarethedark')..'/persistent_player_attributes.lua')
+local PPA = persistent_player_attributes
+
+PPA.register({
+    name = 'bewarethedark_sanity',
+    min  = 0,
+    max  = 20,
+    default = 20,
+})
+
 function bewarethedark.hud_clamp(value)
     if value < 0 then
         return 0
@@ -85,12 +95,7 @@ minetest.register_on_joinplayer(function(player)
     if not pl then
         M.players[name] = { pending_dmg = 0.0 }
         pl = M.players[name]
-        inv:set_size("bewarethedark_sanity", 1)
-        if inv:is_empty("bewarethedark_sanity") then
-            inv:set_stack("bewarethedark_sanity", 1, ItemStack({ name = ":", count = 65535 }))
-        end
         pl.hud_id = player:hud_add({
-            hud_elem_type = 'statbar',
             hud_elem_type = "statbar",
             position = { x=0.5, y=1 },
             text = "bewarethedark_eye.png",
@@ -110,7 +115,6 @@ minetest.register_globalstep(function(dtime)
         for _,player in ipairs(minetest.get_connected_players()) do
             local name = player:get_player_name()
             local pl = M.players[name]
-            local inv = player:get_inventory()
             local pos  = player:getpos()
             local pos_y = pos.y
             -- the middle of the block with the player's head
@@ -127,7 +131,7 @@ minetest.register_globalstep(function(dtime)
             --print("Standing in " .. node.name .. " at light " .. light_now .. " taking " .. dps);
 
             if dps ~= 0 then
-                local sanity = inv:get_stack("bewarethedark_sanity", 1):get_count() / 65535.0 * 20.0;
+                local sanity = PPA.get_value(player, "bewarethedark_sanity")
 
                 sanity = sanity - dps
                 --print("New sanity "..sanity)
@@ -143,10 +147,7 @@ minetest.register_globalstep(function(dtime)
                     end
                 end
 
-                local inv_count = sanity / 20.0 * 65535.0
-                if inv_count > 65535 then inv_count = 65535 end
-                if inv_count < 0 then inv_count = 0 end
-                inv:set_stack("bewarethedark_sanity", 1, ItemStack({ name = ":", count = inv_count}))
+                PPA.set_value(player, "bewarethedark_sanity", sanity)
 
                 player:hud_change(pl.hud_id, 'number', bewarethedark.hud_clamp(sanity))
             end
