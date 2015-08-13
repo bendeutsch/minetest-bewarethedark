@@ -7,6 +7,7 @@ Version: 0.2.0
 
 License:
   Code: LGPL 2.1 (see included LICENSE file)
+  Textures: CC-BY-SA (see http://creativecommons.org/licenses/by-sa/4.0/)
 
 Report bugs or request help on the forum topic.
 
