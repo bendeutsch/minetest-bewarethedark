@@ -3,7 +3,7 @@ Beware the dark [bewarethedark]
 
 A Minetest mod where darkness simply kills you directly
 
-Version: 0.2.1
+Version: 0.3.0
 
 License:
   Code: LGPL 2.1 (see included LICENSE file)
@@ -42,7 +42,8 @@ a separate meter.
 
 Dependencies
 ------------
-None at the moment.
+* hud (optional): https://forum.minetest.net/viewtopic.php?f=11&t=6342 (see HUD.txt for configuration)
+* hudbars (optional): https://forum.minetest.net/viewtopic.php?f=11&t=11153
 
 Installation
 ------------
