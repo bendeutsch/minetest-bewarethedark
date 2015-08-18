@@ -71,22 +71,14 @@ local C = bewarethedark.config
 dofile(minetest.get_modpath('bewarethedark')..'/persistent_player_attributes.lua')
 local PPA = persistent_player_attributes
 
+dofile(minetest.get_modpath('bewarethedark')..'/hud.lua')
+
 PPA.register({
     name = 'bewarethedark_sanity',
     min  = 0,
     max  = 20,
     default = 20,
 })
-
-function bewarethedark.hud_clamp(value)
-    if value < 0 then
-        return 0
-    elseif value > 20 then
-        return 20
-    else
-        return math.ceil(value)
-    end
-end
 
 minetest.register_on_joinplayer(function(player)
     local name = player:get_player_name()
@@ -95,15 +87,7 @@ minetest.register_on_joinplayer(function(player)
     if not pl then
         M.players[name] = { pending_dmg = 0.0 }
         pl = M.players[name]
-        pl.hud_id = player:hud_add({
-            hud_elem_type = "statbar",
-            position = { x=0.5, y=1 },
-            text = "bewarethedark_eye.png",
-            number = 20,
-            direction = 0,
-            size = { x=24, y=24 },
-            offset = { x=25, y=-(48+24+16+32)},
-        })
+        M.hud_init(player)
     end
 end)
 
@@ -149,7 +133,7 @@ minetest.register_globalstep(function(dtime)
 
                 PPA.set_value(player, "bewarethedark_sanity", sanity)
 
-                player:hud_change(pl.hud_id, 'number', bewarethedark.hud_clamp(sanity))
+                M.hud_update(player, sanity)
             end
         end
     end

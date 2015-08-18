@@ -14,7 +14,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.4 r9939"
-   sodipodi:docname="eye.svg"
+   sodipodi:docname="eye_closed.svg"
    inkscape:export-filename="/home/ben/progs/minetest/minetest-bewarethedark/textures/bewarethedark_eye.png"
    inkscape:export-xdpi="135"
    inkscape:export-ydpi="135">
@@ -82,7 +82,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -91,58 +91,31 @@
      inkscape:groupmode="layer"
      id="layer1"
      transform="translate(0,-1036.3622)">
-    <g
-       id="g3783-6"
-       style="fill:#ffffff;fill-opacity:1;stroke:none">
-      <path
-         sodipodi:nodetypes="czc"
-         transform="translate(0,1036.3622)"
-         inkscape:connector-curvature="0"
-         id="path2995-6"
-         d="m 1,8 c 0,0 2,4 7,4 5,0 7,-4 7,-4"
-         style="fill:#ffffff;fill-opacity:1;stroke:none" />
-      <path
-         sodipodi:nodetypes="czc"
-         inkscape:connector-curvature="0"
-         id="path2995-5-1"
-         d="m 1,1044.3622 c 0,0 2,-4 7,-4 5,0 7,4 7,4"
-         style="fill:#ffffff;fill-opacity:1;stroke:none" />
-    </g>
     <path
-       sodipodi:type="arc"
+       style="fill:#ffffff;fill-opacity:1;stroke:none"
+       d="m 1,1044.3622 c 0,0 2,4 7,4 5,0 7,-4 7,-4 0,0 -3,2 -7,2 -4,0 -7,-2 -7,-2 z"
+       id="path2995-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czczc" />
+    <path
+       transform="translate(3,1036.3622)"
        style="fill:#ffff00;fill-opacity:1;stroke:none"
+       clip-path="none"
+       d="M 8.6856602,9.5569805 C 8.4832492,10.035534 8.1903559,10.466498 7.8284271,10.828427 7.1045695,11.552285 6.1045695,12 5,12 3.8954305,12 2.8954305,11.552285 2.1715729,10.828427 1.8096441,10.466498 1.5167508,10.035534 1.3143398,9.5569805 4,10 6,10 8.6856602,9.5569805 z"
        id="path3866"
-       sodipodi:cx="5"
-       sodipodi:cy="8"
-       sodipodi:rx="4"
-       sodipodi:ry="4"
-       d="M 9,8 C 9,10.209139 7.209139,12 5,12 2.790861,12 1,10.209139 1,8 1,5.790861 2.790861,4 5,4 7.209139,4 9,5.790861 9,8 z"
-       transform="translate(3,1036.3622)" />
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cssscc" />
     <path
-       sodipodi:type="arc"
-       style="fill:#000000;fill-opacity:1;stroke:none"
-       id="path3886"
-       sodipodi:cx="-5"
-       sodipodi:cy="8"
-       sodipodi:rx="2"
-       sodipodi:ry="2"
-       d="m -3,8 c 0,1.1045695 -0.8954305,2 -2,2 -1.1045695,0 -2,-0.8954305 -2,-2 0,-1.1045695 0.8954305,-2 2,-2 1.1045695,0 2,0.8954305 2,2 z"
-       transform="translate(13,1036.3622)" />
-    <g
-       id="g3783">
-      <path
-         sodipodi:nodetypes="czc"
-         transform="translate(0,1036.3622)"
-         inkscape:connector-curvature="0"
-         id="path2995"
-         d="m 1,8 c 0,0 2,4 7,4 5,0 7,-4 7,-4"
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1" />
-      <path
-         sodipodi:nodetypes="czc"
-         inkscape:connector-curvature="0"
-         id="path2995-5"
-         d="m 1,1044.3622 c 0,0 2,-4 7,-4 5,0 7,4 7,4"
-         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1" />
-    </g>
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1,1044.3622 c 0,0 2,4 7,4 5,0 7,-4 7,-4"
+       id="path2995"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:round;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1,1044.3622 c 0,0 2,2 7,2 5,0 7,-2 7,-2"
+       id="path2995-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czc" />
   </g>
 </svg>
