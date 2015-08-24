@@ -83,12 +83,20 @@ PPA.register({
 minetest.register_on_joinplayer(function(player)
     local name = player:get_player_name()
     local pl = M.players[name]
-    local inv = player:get_inventory()
     if not pl then
         M.players[name] = { pending_dmg = 0.0 }
         pl = M.players[name]
         M.hud_init(player)
     end
+end)
+
+minetest.register_on_dieplayer(function(player)
+    local name = player:get_player_name()
+    local pl = M.players[name]
+    pl.pending_dmg = 0.0
+    local sanity = 20
+    PPA.set_value(player, "bewarethedark_sanity", sanity)
+    M.hud_update(player, sanity)
 end)
 
 minetest.register_globalstep(function(dtime)
