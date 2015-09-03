@@ -105,6 +105,12 @@ minetest.register_globalstep(function(dtime)
     while M.time_next_tick < 0.0 do
         M.time_next_tick = M.time_next_tick + C.tick_time
         for _,player in ipairs(minetest.get_connected_players()) do
+
+            if player:get_hp() <= 0 then
+                -- dead players don't fear the dark
+                break
+            end
+
             local name = player:get_player_name()
             local pl = M.players[name]
             local pos  = player:getpos()
