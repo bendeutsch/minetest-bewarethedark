@@ -49,6 +49,28 @@ Chaos will certainly ensue.
 
 ]]
 
+--[[
+Helper functions that take care of the conversions *and* the
+clamping for us
+]]
+
+local function _count_for_val(value, def)
+    local count = math.floor((value - def.min) / (def.max - def.min) * 65535)
+    if count < 0 then count = 0 end
+    if count > 65535 then count = 65535 end
+    return count
+end
+local function _val_for_count(count, def)
+    local value = count / 65535 * (def.max - def.min) + def.min
+    if value < def.min then value = def.min end
+    if value > def.max then value = def.max end
+    return value
+end
+-- end helper functions
+
+
+-- Version: 1.0.1 - with read cache
+
 local PPA = persistent_player_attributes
 
 if PPA.version < 1.000 then
@@ -76,29 +98,11 @@ if PPA.version < 1.000 then
 
     PPA.register = function(def)
         PPA.defs[def.name] = {
-            name = name,
+            name = def.name,
             min = def.min or 0.0,
             max = def.max or 1.0,
             default = def.default or def.min or 0.0,
         }
-    end
-
-    --[[
-    Helper functions that take care of the conversions *and* the
-    clamping for us
-    ]]
-
-    local function _count_for_val(value, def)
-        local count = math.floor((value - def.min) / (def.max - def.min) * 65535)
-        if count < 0 then count = 0 end
-        if count > 65535 then count = 65535 end
-        return count
-    end
-    local function _val_for_count(count, def)
-        local value = count / 65535 * (def.max - def.min) + def.min
-        if value < def.min then value = def.min end
-        if value > def.max then value = def.max end
-        return value
     end
 
     --[[
@@ -113,15 +117,33 @@ if PPA.version < 1.000 then
         minetest.register_on_joinplayer(PPA.shim_on_joinplayer)
     end
 
+
+end
+
+if PPA.version < 1.000001 then
+
+    PPA.version = 1.000001 -- 1.0.1
+
+    PPA.read_cache = {--[[
+        player_name = {
+            attr1 = value1,
+            attr2 = value2,
+        },
+    ]]}
+
     -- The actual on_joinplayer handler
 
     PPA.on_joinplayer = function(player)
         local inv = player:get_inventory()
+        local player_name = player:get_player_name()
+        PPA.read_cache[player_name] = {}
         for name, def in pairs(PPA.defs) do
             inv:set_size(name, 1)
             if inv:is_empty(name) then
                 -- set default value
                 inv:set_stack(name, 1, ItemStack({ name = ":", count = _count_for_val(def.default, def) }))
+                -- cache default value
+                PPA.read_cache[player_name][name] = def.default
             end
         end
     end
@@ -131,10 +153,14 @@ if PPA.version < 1.000 then
     ]]
 
     PPA.get_value = function(player, name)
-        local def = PPA.defs[name]
-        local inv = player:get_inventory()
-        local count = inv:get_stack(name, 1):get_count()
-        return _val_for_count(count, def)
+        local player_name = player:get_player_name()
+        if PPA.read_cache[player_name][name] == nil then
+            local def = PPA.defs[name]
+            local inv = player:get_inventory()
+            local count = inv:get_stack(name, 1):get_count()
+            PPA.read_cache[player_name][name] = _val_for_count(count, def)
+        end
+        return PPA.read_cache[player_name][name]
     end
 
     --[[ set an attribute, procedural style:
@@ -144,6 +170,8 @@ if PPA.version < 1.000 then
     PPA.set_value = function(player, name, value)
         local def = PPA.defs[name]
         local inv = player:get_inventory()
+        local player_name = player:get_player_name()
+        PPA.read_cache[player_name][name] = value
         inv:set_stack(name, 1, ItemStack({ name = ":", count = _count_for_val(value, def) }))
     end
 
