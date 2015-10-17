@@ -66,6 +66,8 @@ bewarethedark = {
     time_next_tick = 0.0,
 }
 local M = bewarethedark
+
+dofile(minetest.get_modpath('bewarethedark')..'/configuration.lua')
 local C = bewarethedark.config
 
 dofile(minetest.get_modpath('bewarethedark')..'/persistent_player_attributes.lua')
