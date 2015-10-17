@@ -53,3 +53,12 @@ try_config_file(minetest.get_modpath(modname) .. "/" .. fileroot .. ".conf")
 -- last, world-specific copy in worldpath
 try_config_file(minetest.get_worldpath() .. "/" .. fileroot .. ".conf")
 
+-- remove any special keys from tables
+for key, value in pairs(C) do
+    if type(value) == 'table' then
+        value.CLEAR = nil
+    end
+end
+
+-- write back
+M.config = C
