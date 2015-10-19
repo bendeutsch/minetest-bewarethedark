@@ -30,28 +30,7 @@ USA
 
 bewarethedark = {
 
-    -- configuration
-    config = {
-        tick_time = 0.5,
-        damage_for_light = {
-            [15] = -1.0,
-            [14] = -0.5,
-            [13] = -0.2,
-            [12] = 0,
-            [11] = 0,
-            [10] = 0,
-            [ 9] = 0,
-            [ 8] = 0,
-            [ 7] = 0.1,
-            [ 6] = 0.2,
-            [ 5] = 0.3,
-            [ 4] = 0.4,
-            [ 3] = 0.5,
-            [ 2] = 0.6,
-            [ 1] = 0.8,
-            [ 0] = 1.0,
-        },
-    },
+    -- configuration in bewarethedark.default.conf
 
     -- per-player-stash (not persistent)
     players = {
@@ -66,6 +45,8 @@ bewarethedark = {
     time_next_tick = 0.0,
 }
 local M = bewarethedark
+
+dofile(minetest.get_modpath('bewarethedark')..'/configuration.lua')
 local C = bewarethedark.config
 
 dofile(minetest.get_modpath('bewarethedark')..'/persistent_player_attributes.lua')
