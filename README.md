@@ -3,7 +3,7 @@ Beware the dark [bewarethedark]
 
 A Minetest mod where darkness simply kills you directly
 
-Version: 0.3.2
+Version: 0.3.3
 
 License:
   Code: LGPL 2.1 (see included LICENSE file)
@@ -37,8 +37,7 @@ directly on top of a torch should work, too.
 Future plans
 ------------
 
-**Sunburn**: Suddenly, too much light can kill you too! Will need
-a separate meter.
+None at the moment.
 
 Dependencies
 ------------
