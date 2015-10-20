@@ -47,10 +47,10 @@ bewarethedark = {
 local M = bewarethedark
 
 dofile(minetest.get_modpath('bewarethedark')..'/configuration.lua')
-local C = bewarethedark.config
+local C = M.config
 
 dofile(minetest.get_modpath('bewarethedark')..'/persistent_player_attributes.lua')
-local PPA = persistent_player_attributes
+local PPA = M.persistent_player_attributes
 
 dofile(minetest.get_modpath('bewarethedark')..'/hud.lua')
 

@@ -18,8 +18,8 @@ Any hud needs to define the following functions:
 ]]
 
 local M   = bewarethedark
-local C   = bewarethedark.config
-local PPA = persistent_player_attributes
+local C   = M.config
+local PPA = M.persistent_player_attributes
 
 function M.hud_clamp(value)
     if value < 0 then
