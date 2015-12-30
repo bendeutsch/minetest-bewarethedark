@@ -71,7 +71,7 @@ minetest.register_on_joinplayer(function(player)
     end
 end)
 
-minetest.register_on_dieplayer(function(player)
+minetest.register_on_respawnplayer(function(player)
     local name = player:get_player_name()
     local pl = M.players[name]
     pl.pending_dmg = 0.0
