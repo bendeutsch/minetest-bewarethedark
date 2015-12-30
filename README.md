@@ -3,7 +3,7 @@ Beware the dark [bewarethedark]
 
 A Minetest mod where darkness simply kills you directly
 
-Version: 0.3.4
+Version: 0.3.5
 
 License:
   Code: LGPL 2.1 (see included LICENSE file)
