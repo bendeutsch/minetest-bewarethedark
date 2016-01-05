@@ -106,29 +106,40 @@ minetest.register_globalstep(function(dtime)
                 light_now = 9
             end
 
+            local sanity = PPA.get_value(player, "bewarethedark_sanity")
+            local overflow_factor = 1.0
+
             local dps = C.damage_for_light[light_now] * C.tick_time
             --print("Standing in " .. node.name .. " at light " .. light_now .. " taking " .. dps);
 
             if dps ~= 0 then
-                local sanity = PPA.get_value(player, "bewarethedark_sanity")
 
                 sanity = sanity - dps
                 --print("New sanity "..sanity)
                 if sanity < 0.0 and minetest.setting_getbool("enable_damage") then
-                    pl.pending_dmg = pl.pending_dmg - sanity
+                    -- how much of this tick is hp damage?
+                    overflow_factor = (0.0 - sanity) / dps
                     sanity = 0.0
-
-                    if pl.pending_dmg > 0.0 then
-                        local dmg = math.floor(pl.pending_dmg)
-                        --print("Deals "..dmg.." damage!")
-                        pl.pending_dmg = pl.pending_dmg - dmg
-                        player:set_hp( player:get_hp() - dmg )
-                    end
                 end
 
                 PPA.set_value(player, "bewarethedark_sanity", sanity)
 
                 M.hud_update(player, sanity)
+            end
+
+            -- if insane, hp damage applies
+            if sanity <= 0.0 then
+                -- dps for HP potentially other than for sanity
+                dps = (C.insane_damage_for_light[light_now] or C.damage_for_light[light_now]) * C.tick_time * overflow_factor
+
+                pl.pending_dmg = pl.pending_dmg + dps
+
+                if pl.pending_dmg > 0.0 then
+                    local dmg = math.floor(pl.pending_dmg)
+                    --print("Deals "..dmg.." damage!")
+                    pl.pending_dmg = pl.pending_dmg - dmg
+                    player:set_hp( player:get_hp() - dmg )
+                end
             end
         end
     end
