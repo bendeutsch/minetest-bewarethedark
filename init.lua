@@ -131,6 +131,7 @@ minetest.register_globalstep(function(dtime)
             if sanity <= 0.0 then
                 -- dps for HP potentially other than for sanity
                 dps = (C.insane_damage_for_light[light_now] or C.damage_for_light[light_now]) * C.tick_time * overflow_factor
+                if dps < 0.0 then dps = 0.0 end
 
                 pl.pending_dmg = pl.pending_dmg + dps
 
