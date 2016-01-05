@@ -68,8 +68,8 @@ PPA.on_joinplayer = function(player)
     local player_name = player:get_player_name()
     PPA.read_cache[player_name] = {}
     for name, def in pairs(PPA.defs) do
-        inv:set_size(name, 1)
-        if inv:is_empty(name) then
+        if inv:get_size(name) == 0 then
+            inv:set_size(name, 1)
             -- set default value
             inv:set_stack(name, 1, ItemStack({ name = ":", count = _count_for_val(def.default, def) }))
             -- cache default value
