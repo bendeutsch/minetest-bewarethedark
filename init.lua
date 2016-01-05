@@ -106,7 +106,7 @@ minetest.register_globalstep(function(dtime)
                 light_now = 9
             end
 
-            local dps = C.damage_for_light[light_now]
+            local dps = C.damage_for_light[light_now] * C.tick_time
             --print("Standing in " .. node.name .. " at light " .. light_now .. " taking " .. dps);
 
             if dps ~= 0 then
