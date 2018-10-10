@@ -44,6 +44,16 @@ if minetest.get_modpath("hudbars") then
     function M.hud_update(player, value)
         hb.change_hudbar(player, 'sanity', M.hud_clamp(value), 20)
     end
+    
+    function M.hide_bar(player)
+        hb.hide_hudbar(player, "sanity")
+    end
+
+    function M.unhide_bar(player)
+        hb.unhide_hudbar(player, "sanity")
+    end
+    
+    
 elseif minetest.get_modpath("hud") then
     -- default positions follow [hud] defaults
     local position = HUD_SANITY_POS or { x=0.5, y=1 }
@@ -66,6 +76,15 @@ elseif minetest.get_modpath("hud") then
             number = M.hud_clamp(value)
         })
     end
+    
+    function M.hide_bar(player)
+       -- todo
+    end
+
+    function M.unhide_bar(player)
+       -- todo
+    end
+
 else
     -- 'builtin' hud
     function M.hud_init(player)
@@ -86,4 +105,13 @@ else
         local hud_id = M.players[name].hud_id
         player:hud_change(hud_id, 'number', M.hud_clamp(value))
     end
+
+    function M.hide_bar(player)
+       -- todo
+    end
+
+    function M.unhide_bar(player)
+       -- todo
+    end
+
 end

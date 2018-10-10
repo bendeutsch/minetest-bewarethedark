@@ -112,6 +112,14 @@ minetest.register_globalstep(function(dtime)
             local dps = C.damage_for_light[light_now] * C.tick_time
             --print("Standing in " .. node.name .. " at light " .. light_now .. " taking " .. dps);
 
+                -- and hb.settings.autohide_breath == true
+                
+            if sanity >= 20 and M.config.autohide_sanity_bar == true  then
+                M.hide_bar(player)
+            else
+                M.unhide_bar(player)
+            end
+
             if dps ~= 0 then
 
                 sanity = sanity - dps
