@@ -34,7 +34,7 @@ end
 if minetest.get_modpath("hudbars") then
     hb.register_hudbar('sanity', 0x000000, "Sanity", {
         bar = 'bewarethedark_hudbars_bar.png',
-        icon = 'bewarethedark_eye.png'
+        icon = 'bewarethedark_eye.png', bgicon = 'bewarethedark_eye_closed.png'
     }, 20, 20, false)
     function M.hud_init(player)
         hb.init_hudbar(player, 'sanity',
