@@ -1,0 +1,27 @@
+#The period, in seconds, in which this mod updates values.
+#Changing this will not directly affect other values, but
+#may change computation load or accuracy.
+beware_tick_time (Computational period) float 0.5
+
+#Toggle to autohide the sanity bar when its full.
+beware_autohide (Hide sanity hud when full) bool true
+
+#Damage per second for various light levels, both for hp
+#and sanity loss. Negative values "heal" sanity, but not hp.
+beware_light_level_15 (Damage/healing at light level 15) float -5.0
+beware_light_level_14 (Damage/healing at light level 14) float -5.0
+beware_light_level_13 (Damage/healing at light level 13, near torch) float -5.0
+beware_light_level_12 (Damage/healing at light level 12) float -2.5
+beware_light_level_11 (Damage/healing at light level 11) float -2.0
+beware_light_level_10 (Damage/healing at light level 10) float -1.5
+beware_light_level_9 (Damage/healing at light level 9) float 0.0
+beware_light_level_8 (Damage/healing at light level 8) float 0.0
+beware_light_level_7 (Damage/healing at light level 7) float 0.0
+beware_light_level_6 (Damage/healing at light level 6) float 0.0
+beware_light_level_5 (Damage/healing at light level 5) float 0.0
+beware_light_level_4 (Damage/healing at light level 4) float 0.0
+beware_light_level_3 (Damage/healing at light level 3) float 0.25
+beware_light_level_2 (Damage/healing at light level 2) float 0.5
+beware_light_level_1 (Damage/healing at light level 1) float 0.5
+beware_light_level_0 (Damage/healing at light level 0) float 0.5
+
