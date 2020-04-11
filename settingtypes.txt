@@ -4,7 +4,7 @@
 beware_tick_time (Computational period) float 0.5
 
 #Toggle to autohide the sanity bar when its full.
-beware_autohide (hide sanity hud when full) bool true
+beware_autohide (Hide sanity hud when full) bool true
 
 #Damage per second for various light levels, both for hp
 #and sanity loss. Negative values "heal" sanity, but not hp.
