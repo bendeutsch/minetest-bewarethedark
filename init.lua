@@ -67,8 +67,8 @@ minetest.register_on_joinplayer(function(player)
     if not pl then
         M.players[name] = { pending_dmg = 0.0 }
         pl = M.players[name]
-        M.hud_init(player)
     end
+    M.hud_init(player) -- implement issue #2
 end)
 
 minetest.register_on_respawnplayer(function(player)
@@ -124,7 +124,7 @@ minetest.register_globalstep(function(dtime)
 
                 sanity = sanity - dps
                 --print("New sanity "..sanity)
-                if sanity < 0.0 and minetest.setting_getbool("enable_damage") then
+                if sanity < 0.0 and minetest.settings:get_bool("enable_damage") then
                     -- how much of this tick is hp damage?
                     overflow_factor = (0.0 - sanity) / dps
                     sanity = 0.0

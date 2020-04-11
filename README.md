@@ -3,7 +3,7 @@ Beware the dark [bewarethedark]
 
 A Minetest mod where darkness simply kills you directly
 
-Version: 0.4.0
+Version: 0.5.0
 
 License:
   Code: LGPL 2.1 (see included LICENSE file)
@@ -33,6 +33,11 @@ you get damaged instead!
 
 Stand in bright light to replenish sanity. Sunlight is best, but
 directly on top of a torch should work, too.
+
+Note that this behavior is flexible and can be changed to your liking.
+It is possible to make darkness and light damage as well as heal the player.
+
+In addition, its possible to hide the hud.
 
 Future plans
 ------------
